@@ -1,0 +1,22 @@
+{
+  "name": "auth_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "expressjs": "^1.0.1",
+    "jade": "^1.11.0",
+    "passport": "^0.4.0",
+    "passport-oauth2": "^1.4.0"
+  }
+}
