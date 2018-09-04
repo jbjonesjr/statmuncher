@@ -1,5 +1,0 @@
-build:
-  languages:
-    - nodejs
-run:
-  web: npm start --prefix ./auth_app/ --debug
