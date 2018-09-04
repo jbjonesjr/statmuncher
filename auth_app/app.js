@@ -90,7 +90,8 @@ app.get('/', function (req, res, user) {
     releaseCreatedAt: 'HEROKU_RELEASE_CREATED_AT',
     releaseVersion: 'HEROKU_RELEASE_VERSION',
   }
-  res.send('hello world\n\n\n' + JSON.stringify(_.mapValues(mapping, value => process.env[value])) + '\n\nvars done')
+  let metadata = _.mapValues(mapping, value => process.env[value])
+  res.send('hello world\n\n\n' + JSON.stringify(metadata) + '\n\nvars done')
 })
 
 // authentication routes
