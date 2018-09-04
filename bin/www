@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app')
+var app = require('../webapp')
 var debug = require('debug')('tradecenter-server:server')
 var http = require('http')
 
