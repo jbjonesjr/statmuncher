@@ -1,1 +1,1 @@
-web: npm start --prefix ./auth_app/ --verbose
+web: npm fart --prefix ./auth_app/ --verbose
