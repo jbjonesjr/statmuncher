@@ -1,1 +1,1 @@
-web: npm start --prefix ./auth_app/ --debug
+web: npm start --prefix ./auth_app/ --verbose
