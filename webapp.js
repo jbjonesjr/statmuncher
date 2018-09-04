@@ -40,7 +40,10 @@ app.get('/', function (req, res, user) {
     releaseVersion: 'HEROKU_RELEASE_VERSION'
   }
   let metadata = _.mapValues(mapping, value => process.env[value])
-  res.send('hello world\n\n\n' + JSON.stringify(metadata) + '\n\nvars done')
+  let metadata = _.mapValues(mapping, value => process.env[value])
+  console.log(metadata)
+  console.log(JSON.stringify(metadata))
+  res.send('hello world\n\n\n' + JSON.stringify(metadata) + '\n\n' + process.env['HEROKU_APP_NAME'] + '\n\n\nvars done')
 })
 
 // catch 404 and forward to error handler
