@@ -3,6 +3,7 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var session = require('express-session')
+let _ = require('lodash')
 
 var passport = require('passport')
 var request = require('request')
@@ -78,7 +79,18 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function (req, res, user) {
   res.status(200)
-  res.send('hello world')
+
+  const mapping = {
+    appId: 'HEROKU_APP_ID',
+    appName: 'HEROKU_APP_NAME',
+    dynoId: 'HEROKU_DYNO_ID',
+    dynoName: 'DYNO',
+    slugCommit: 'HEROKU_SLUG_COMMIT',
+    slugDescription: 'HEROKU_SLUG_DESCRIPTION',
+    releaseCreatedAt: 'HEROKU_RELEASE_CREATED_AT',
+    releaseVersion: 'HEROKU_RELEASE_VERSION',
+  }
+  res.send('hello world\n\n\n' + JSON.stringify(_.mapValues(mapping, value => process.env[value])) + '\n\nvars done')
 })
 
 // authentication routes
