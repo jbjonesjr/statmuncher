@@ -46,7 +46,7 @@ app.get('/', function (req, res, user) {
   res.send('hello world\n\n\n' + JSON.stringify(metadata) + '\n\n' + process.env['HEROKU_APP_NAME'] + '\n\n\nvars done')
 })
 
-app.user(auth)
+app.use(auth)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
