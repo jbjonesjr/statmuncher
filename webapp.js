@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var session = require('express-session')
 let _ = require('lodash')
+let auth = require('./lib/yahoo_app/app')
 
 /*const conf = {
   client_key: process.env.yahoo_consumer_key,
@@ -44,6 +45,8 @@ app.get('/', function (req, res, user) {
   console.log(JSON.stringify(metadata))
   res.send('hello world\n\n\n' + JSON.stringify(metadata) + '\n\n' + process.env['HEROKU_APP_NAME'] + '\n\n\nvars done')
 })
+
+app.user(auth)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
