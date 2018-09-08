@@ -48,6 +48,8 @@ app.get('/', function (req, res, user) {
   let metadata = _.mapValues(heroku_dynometa_metadata, value => process.env[value])
   console.log(JSON.stringify(metadata))
 
+  console.log('user:', req.user)
+  
   response_data = 'hello world\n\n\n' + JSON.stringify(metadata) + '\n\n'
   if (req.session.yahoo_tokens) {
     response_data += '\n\n\n\n<br/><br/><br/><br/>' +
