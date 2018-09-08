@@ -49,7 +49,7 @@ app.get('/', function (req, res, user) {
   console.log(JSON.stringify(metadata))
 
   console.log('user:', req.user)
-  console.log('passport user', req.session.passport.user)
+  console.log('passport user', req.session.passport)
 
   response_data = 'hello world\n\n\n' + JSON.stringify(metadata) + '\n\n'
   if (req.session.yahoo_tokens) {
