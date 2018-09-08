@@ -9,6 +9,18 @@ require('dotenv').config()
 
 let auth = require('./lib/yahoo_app/app')
 
+
+const heroku_dynometa_metadata = {
+    appId: 'HEROKU_APP_ID',
+    appName: 'HEROKU_APP_NAME',
+    dynoId: 'HEROKU_DYNO_ID',
+    dynoName: 'DYNO',
+    slugCommit: 'HEROKU_SLUG_COMMIT',
+    slugDescription: 'HEROKU_SLUG_DESCRIPTION',
+    releaseCreatedAt: 'HEROKU_RELEASE_CREATED_AT',
+    releaseVersion: 'HEROKU_RELEASE_VERSION'
+  }
+
 /*const conf = {
   client_key: process.env.yahoo_consumer_key,
   client_secret: process.env.yahoo_app_secret
@@ -24,7 +36,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(session({
-  secret: 'rebar',
+  secret: process.env.session_secret,
   resave: false,
   saveUninitialized: true
 }))
@@ -33,20 +45,16 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', function (req, res, user) {
   res.status(200)
 
-  const mapping = {
-    appId: 'HEROKU_APP_ID',
-    appName: 'HEROKU_APP_NAME',
-    dynoId: 'HEROKU_DYNO_ID',
-    dynoName: 'DYNO',
-    slugCommit: 'HEROKU_SLUG_COMMIT',
-    slugDescription: 'HEROKU_SLUG_DESCRIPTION',
-    releaseCreatedAt: 'HEROKU_RELEASE_CREATED_AT',
-    releaseVersion: 'HEROKU_RELEASE_VERSION'
-  }
-  let metadata = _.mapValues(mapping, value => process.env[value])
-  console.log(metadata)
+  let metadata = _.mapValues(heroku_dynometa_metadata, value => process.env[value])
   console.log(JSON.stringify(metadata))
-  res.send('hello world\n\n\n' + JSON.stringify(metadata) + '\n\n' + process.env['HEROKU_APP_NAME'] + '\n\n\nvars done')
+
+  response_data = 'hello world\n\n\n' + JSON.stringify(metadata) + '\n\n'
+  if (req.session.yahoo_tokens) {
+    response_data += '\n\n\n\n<br/><br/><br/><br/>' +
+    `Access Token: ${req.session.yahoo_tokens.accessToken}<br/>` +
+    `Refresh Token: ${req.session.yahoo_tokens.refreshToken}`
+  }
+  res.send(response_data)
 })
 
 app.use(auth)
