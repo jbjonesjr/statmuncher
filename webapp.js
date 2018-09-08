@@ -4,6 +4,9 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var session = require('express-session')
 let _ = require('lodash')
+
+require('dotenv').config()
+
 let auth = require('./lib/yahoo_app/app')
 
 /*const conf = {
