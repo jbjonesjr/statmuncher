@@ -49,8 +49,9 @@ app.get('/', function (req, res, user) {
 
   response_data = 'hello world<br/><br/>' + JSON.stringify(metadata) + '\n\n'
   if (req.session.passport) {
-    response_data += '\n\n\n\n<br/><br/><br/><br/>' +
-    `Access Token: ${req.session.passport.user.accessToken}<br/>` +
+    response_data += '<br/><br/><br/><br/>\n' +
+    `User: ${req.session.passport.user.name}<br/>\n` +
+    `Access Token: ${req.session.passport.user.accessToken}<br/>\n` +
     `Refresh Token: ${req.session.passport.user.refreshToken}`
   }
   res.send(response_data)
