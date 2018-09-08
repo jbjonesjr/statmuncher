@@ -46,16 +46,12 @@ app.get('/', function (req, res, user) {
   res.status(200)
 
   let metadata = _.mapValues(heroku_dynometa_metadata, value => process.env[value])
-  console.log(JSON.stringify(metadata))
 
-  console.log('user:', req.user)
-  console.log('passport user', req.session.passport)
-
-  response_data = 'hello world\n\n\n' + JSON.stringify(metadata) + '\n\n'
-  if (req.session.yahoo_tokens) {
+  response_data = 'hello world<br/><br/>' + JSON.stringify(metadata) + '\n\n'
+  if (req.session.passport) {
     response_data += '\n\n\n\n<br/><br/><br/><br/>' +
-    `Access Token: ${req.session.yahoo_tokens.accessToken}<br/>` +
-    `Refresh Token: ${req.session.yahoo_tokens.refreshToken}`
+    `Access Token: ${req.session.passport.user.accessToken}<br/>` +
+    `Refresh Token: ${req.session.passport.user.refreshToken}`
   }
   res.send(response_data)
 })
