@@ -1,8 +1,8 @@
-<h1>{{title}} |
+<h1 style="font-size:30pt;background-color:green;">{{title}}
   {{^user}}
     <a href="/auth/yahoo">{{loginmessage}}</a>
   {{/user}}
   {{#user}}
-    Welcome {{user.name}}
+    <div style='float:right; font-size:12pt;margin-top:18px;'>Welcome {{user.name}}</div>
   {{/user}}
 </h1>

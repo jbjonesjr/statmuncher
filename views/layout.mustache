@@ -7,11 +7,7 @@
 <body>
   {{> banner}}
   {{#user}}
-    {{user.name}}
-    <ul>
-      <li>Access Token: {{user.accessToken}}</li>
-      <li>Refresh Token: {{user.refreshToken}}</li>
-    </ul>
+    {{> user_overlay}}
   {{/user}}
 </body>
 
