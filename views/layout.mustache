@@ -1,0 +1,18 @@
+<html>
+
+<head>
+  <title>{{title}}</title>
+</head>
+
+<body>
+  {{> banner}}
+  {{#user}}
+  {{name}}
+  <ul>
+    <li>Access Token: {{user.accessToken}}</li>
+    <li>Refresh Token: {{user.refreshToken}}</li>
+  </ul>
+  {{/user}}
+</body>
+
+</html>

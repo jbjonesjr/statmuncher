@@ -4,6 +4,8 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var session = require('express-session')
 let _ = require('lodash')
+var mustacheExpress = require('mustache-express')
+
 
 require('dotenv').config()
 
@@ -30,7 +32,8 @@ var app = express()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'jade')
+app.engine('mustache', mustacheExpress())
+app.set('view engine', 'mustache')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -47,15 +50,11 @@ app.get('/', function (req, res, user) {
 
   let metadata = _.mapValues(heroku_dynometa_metadata, value => process.env[value])
 
-  response_data = 'hello world<br/><br/>' + JSON.stringify(metadata) + '\n\n'
-  if (req.session.passport) {
-    response_data += '<br/><br/><br/><br/>\n' +
-    `Username: ${req.session.passport.user.id}<br/>\n` +
-    `User: ${req.session.passport.user.name}<br/>\n` +
-    `Access Token: ${req.session.passport.user.accessToken}<br/>\n` +
-    `Refresh Token: ${req.session.passport.user.refreshToken}`
-  }
-  res.send(response_data)
+  res.render('layout', {
+    loginmessage: 'please login',
+    title: 'stats muncher',
+    user: req.session.passport
+  })
 })
 
 app.use(auth)
@@ -75,6 +74,9 @@ if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500)
     res.render('error', {
+      loginmessage: 'please login',
+      title: 'stats muncher',
+      user: req.session.passport,
       message: err.message,
       error: err
     })
@@ -86,6 +88,9 @@ if (app.get('env') === 'development') {
 app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error', {
+    loginmessage: 'please login',
+    title: 'stats muncher',
+    user: req.session.passport,
     message: err.message,
     error: {}
   })

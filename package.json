@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "dotenv": "^6.0.0",
-    "lodash": "^4.17.10",
-    "npm": "^6.4.1",
-    "yahoo-fantasy": "^3.0.4",
     "cookie-parser": "^1.4.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "expressjs": "^1.0.1",
-    "jade": "^1.11.0",
+    "lodash": "^4.17.10",
+    "mustache-express": "^1.2.7",
+    "npm": "^6.4.1",
     "passport": "^0.4.0",
-    "passport-oauth2": "^1.4.0"
+    "passport-oauth2": "^1.4.0",
+    "yahoo-fantasy": "^3.0.4"
   },
   "devDependencies": {},
   "scripts": {
