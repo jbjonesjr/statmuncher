@@ -51,7 +51,6 @@ app.get('/', function (req, res, user) {
   let metadata = _.mapValues(heroku_dynometa_metadata, value => process.env[value])
 
   res.render('layout', {
-    loginmessage: 'please login',
     title: 'stats muncher',
     user: req.session.passport
   })
@@ -74,7 +73,6 @@ if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500)
     res.render('error', {
-      loginmessage: 'please login',
       title: 'stats muncher',
       user: req.session.passport,
       message: err.message,
@@ -88,7 +86,6 @@ if (app.get('env') === 'development') {
 app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error', {
-    loginmessage: 'please login',
     title: 'stats muncher',
     user: req.session.passport,
     message: err.message,
