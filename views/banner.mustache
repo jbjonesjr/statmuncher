@@ -1,2 +1,8 @@
-<h1>{{title}} | <a href="/auth/yahoo">{{loginmessage}}</a>
+<h1>{{title}} |
+  {{^user}}
+    <a href="/auth/yahoo">{{loginmessage}}</a>
+  {{/user}}
+  {{#user}}
+    Welcome {{user.name}}
+  {{/user}}
 </h1>
